@@ -1,4 +1,4 @@
-package com.emersonrt.gerenciador.servlet;
+package com.emersonrt.gerenciador.modelo;
 
 import java.util.Date;
 
