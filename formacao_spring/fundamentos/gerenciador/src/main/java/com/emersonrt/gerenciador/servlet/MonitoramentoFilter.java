@@ -23,7 +23,7 @@ public class MonitoramentoFilter implements Filter {
         filterChain.doFilter(servletRequest, servletResponse);
 
         long depois = System.currentTimeMillis();
-        System.out.println("Tempo de execução: " + (depois - antes) + ", Ação: " + acao);
+        System.out.println("Tempo de execução: " + (depois - antes) + ", Ação: " + acao);//teste commit
     }
 
     @Override
