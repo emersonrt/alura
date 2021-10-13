@@ -1,10 +1,9 @@
 package com.emersonrt.gerenciador.servlet;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter("/entrada")
+//@WebFilter("/entrada")
 public class MonitoramentoFilter implements Filter {
 
     @Override
@@ -23,7 +22,7 @@ public class MonitoramentoFilter implements Filter {
         filterChain.doFilter(servletRequest, servletResponse);
 
         long depois = System.currentTimeMillis();
-        System.out.println("Tempo de execução: " + (depois - antes) + ", Ação: " + acao);//teste commit
+        System.out.println("Tempo de execução: " + (depois - antes) + ", Ação: " + acao);
     }
 
     @Override

@@ -2,32 +2,29 @@ package com.emersonrt.gerenciador.servlet;
 
 import com.emersonrt.gerenciador.acao.Acao;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/entrada")
-public class UnicaEntradaServlet extends HttpServlet {
+//@WebFilter("/entrada")
+public class ControladorFilter implements Filter {
+
+    public void init(FilterConfig config) throws ServletException {
+    }
+
+    public void destroy() {
+    }
 
     @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws ServletException, IOException {
+
+        System.out.println("ControlladorFilter");
+
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         String paramAcao = request.getParameter("acao");
-
-        HttpSession sessao = request.getSession();
-        Boolean usuarioNaoEstaLogado = sessao.getAttribute("usuarioLogado") == null;
-        Boolean ehUmaAcaoProtegida = !(paramAcao.equals("Login") || paramAcao.equals("LoginForm"));
-
-        if (ehUmaAcaoProtegida && usuarioNaoEstaLogado) {
-            response.sendRedirect("entrada?acao=LoginForm");
-            return;
-        }
-
         String nomeDaClasse = "com.emersonrt.gerenciador.acao." + paramAcao;
 
         Class classe = null;
@@ -50,5 +47,4 @@ public class UnicaEntradaServlet extends HttpServlet {
         }
 
     }
-
 }
