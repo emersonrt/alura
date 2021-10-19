@@ -12,6 +12,7 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <warFinalName>gerenciador</warFinalName>
     </properties>
     
     <dependencies>
@@ -36,6 +37,7 @@
     </dependencies>
 
     <build>
+        <finalName>${warFinalName}</finalName>  
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
