@@ -1,30 +1,32 @@
 package Produto;
 
 import Categoria.Categoria;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Table(name = "produtos")
+@ToString
 @Entity
+@Table(name = "produtos")
 @NamedQuery(name= "Produto.produtosPorCategoria",
         query = "SELECT p FROM Produto p WHERE p.categoria.nome = :nomeCategoria")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Produto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long idProduto;
-    @Column(name = "nome")
     private String nome;
-    @Column(name = "descricao")
     private String descricao;
-    @Column(name = "preco")
     private BigDecimal preco;
+    @Column(name = "data_cadastro")
     private LocalDate dataCadastro = LocalDate.now();
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
 

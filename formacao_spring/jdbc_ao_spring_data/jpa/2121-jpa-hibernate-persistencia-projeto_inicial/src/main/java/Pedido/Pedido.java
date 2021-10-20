@@ -21,7 +21,8 @@ public class Pedido implements Serializable {
     private BigDecimal valorTotal = new BigDecimal(0);
     private LocalDate data = LocalDate.now();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_clientes")
     private Cliente cliente;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)

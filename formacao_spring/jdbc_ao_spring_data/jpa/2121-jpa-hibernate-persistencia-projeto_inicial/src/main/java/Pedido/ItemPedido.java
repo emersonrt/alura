@@ -18,11 +18,11 @@ public class ItemPedido implements Serializable {
     private BigDecimal precoUnitario;
     private Integer quantidade;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pedido")
     private Pedido pedido;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_produto")
     private Produto produto;
 
