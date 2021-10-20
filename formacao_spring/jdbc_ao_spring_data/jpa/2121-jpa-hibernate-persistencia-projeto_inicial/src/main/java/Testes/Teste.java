@@ -1,4 +1,4 @@
-package Produto;
+package Testes;
 
 import javax.persistence.*;
 import java.io.Serializable;

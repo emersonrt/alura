@@ -9,6 +9,8 @@ import java.time.LocalDate;
 
 @Table(name = "produtos")
 @Entity
+@NamedQuery(name= "Produto.produtosPorCategoria",
+        query = "SELECT p FROM Produto p WHERE p.categoria.nome = :nomeCategoria")
 public class Produto implements Serializable {
 
     @Id
