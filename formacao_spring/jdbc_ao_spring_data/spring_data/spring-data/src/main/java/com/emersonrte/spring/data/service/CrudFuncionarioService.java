@@ -1,16 +1,16 @@
 package com.emersonrte.spring.data.service;
 
-import com.emersonrte.spring.data.orm.Cargo;
 import com.emersonrte.spring.data.orm.Funcionario;
 import com.emersonrte.spring.data.orm.UnidadeTrabalho;
 import com.emersonrte.spring.data.repository.CargoRepository;
 import com.emersonrte.spring.data.repository.FuncionarioRepository;
-import com.emersonrte.spring.data.repository.FuncionarioRepository;
 import com.emersonrte.spring.data.repository.UnidadeTrabalhoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -48,7 +48,7 @@ public class CrudFuncionarioService {
                     atualizar(scan);
                     break;
                 case 3:
-                    visualizar();
+                    visualizar(scan);
                     break;
                 case 4:
                     deletar(scan);
@@ -131,11 +131,18 @@ public class CrudFuncionarioService {
         System.out.println("Atualização feita!");
     }
 
-    public void visualizar() {
-        Iterable<Funcionario> funcionarios = funcionarioRepository.findAll();
-        System.out.println();
-        funcionarios.forEach(funcionario -> System.out.println(funcionario));
-        System.out.println();
+    public void visualizar(Scanner scan) {
+        System.out.println("Qual página voce deseja visualizar");
+        Integer page = scan.nextInt();
+
+        PageRequest pageable = PageRequest
+                .of(page, 5, Sort.by(Sort.Direction.ASC, "nome"));
+        Page<Funcionario> funcionarios = funcionarioRepository.findAll(pageable);
+
+        System.out.println(funcionarios);
+        System.out.println("Pagina atual " + funcionarios.getNumber());
+        System.out.println("Total elementos " + funcionarios.getTotalElements());
+        funcionarios.forEach(System.out::println);
     }
     
     public void deletar(Scanner scan) {
