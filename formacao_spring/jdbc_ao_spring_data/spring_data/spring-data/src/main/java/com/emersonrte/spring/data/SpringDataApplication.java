@@ -1,9 +1,6 @@
 package com.emersonrte.spring.data;
 
-import com.emersonrte.spring.data.service.CrudCargoService;
-import com.emersonrte.spring.data.service.CrudFuncionarioService;
-import com.emersonrte.spring.data.service.CrudUnidadeTrabalhoService;
-import com.emersonrte.spring.data.service.RelatoriosService;
+import com.emersonrte.spring.data.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,12 +16,14 @@ public class SpringDataApplication implements CommandLineRunner {
 	private final CrudFuncionarioService funcionarioService;
 	private final CrudUnidadeTrabalhoService unidadeTrabalhoService;
     private final RelatoriosService relatoriosService;
+    private final RelatorioFuncionarioDinamico relatorioFuncionarioDinamicoService;
 
-	public SpringDataApplication(CrudCargoService cargoService, CrudFuncionarioService funcionarioService, CrudUnidadeTrabalhoService unidadeTrabalhoService, RelatoriosService relatoriosService) {
+	public SpringDataApplication(CrudCargoService cargoService, CrudFuncionarioService funcionarioService, CrudUnidadeTrabalhoService unidadeTrabalhoService, RelatoriosService relatoriosService, RelatorioFuncionarioDinamico relatorioFuncionarioDinamicoService) {
 		this.cargoService = cargoService;
 		this.funcionarioService = funcionarioService;
 		this.unidadeTrabalhoService = unidadeTrabalhoService;
         this.relatoriosService = relatoriosService;
+        this.relatorioFuncionarioDinamicoService = relatorioFuncionarioDinamicoService;
     }
 
 	public static void main(String[] args) {
@@ -43,6 +42,7 @@ public class SpringDataApplication implements CommandLineRunner {
             System.out.println("2 - Funcionario");
             System.out.println("3 - Unidade Trabalho");
             System.out.println("4 - Relatorios");
+            System.out.println("5 - Relatorio dinamico");
 
             int action = scan.nextInt();
             selecionaAcao(scan, action);
@@ -62,6 +62,9 @@ public class SpringDataApplication implements CommandLineRunner {
                 break;
             case 4:
                 relatoriosService.inicial(scan);
+                break;
+            case 5:
+                relatorioFuncionarioDinamicoService.inicial(scan);
                 break;
             default:
                 system = false;
