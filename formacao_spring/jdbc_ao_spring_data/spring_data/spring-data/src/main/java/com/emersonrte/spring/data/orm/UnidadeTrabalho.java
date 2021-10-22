@@ -1,7 +1,5 @@
 package com.emersonrte.spring.data.orm;
 
-import lombok.ToString;
-
 import javax.persistence.*;
 import java.util.List;
 

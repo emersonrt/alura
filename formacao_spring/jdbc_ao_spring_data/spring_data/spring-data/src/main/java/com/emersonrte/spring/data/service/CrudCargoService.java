@@ -18,6 +18,7 @@ public class CrudCargoService {
 
     public void inicial(Scanner scan) {
 
+        system = true;
         while (system) {
             System.out.println("Qual acao de cargo deseja executar?");
             System.out.println("0 - Sair");
@@ -80,7 +81,7 @@ public class CrudCargoService {
     public void visualizar() {
         Iterable<Cargo> cargos = cargoRepository.findAll();
         System.out.println();
-        cargos.forEach(cargo -> System.out.println(cargo));
+        cargos.forEach(System.out::println);
         System.out.println();
     }
     

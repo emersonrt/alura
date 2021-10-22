@@ -4,11 +4,8 @@ import com.emersonrte.spring.data.orm.Funcionario;
 import com.emersonrte.spring.data.repository.FuncionarioRepository;
 import com.emersonrte.spring.data.specification.SpecificationFuncionario;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -42,7 +39,7 @@ public class RelatorioFuncionarioDinamico {
         System.out.println("Digite o salario");
         Double salario = scan.nextDouble();
 
-        if (salario.equals(0)) {
+        if (salario == 0) {
             salario = null;
         }
 

@@ -25,26 +25,27 @@ public class RelatoriosService {
 
     public void inicial(Scanner scan) {
 
+        system = true;
         while (system) {
             System.out.println("Qual acao de cargo deseja executar?");
-            System.out.println("0 - Sair");
-            System.out.println("1 - Buscar funcionario nome");
-            System.out.println("2 - Buscar funcionario nome, salario e data contratação");
-            System.out.println("3 - Buscar funcionario data contratação");
-            System.out.println("4 - Pesquisa funcionario salário");
 
-            int action = scan.nextInt();
-            switch (action) {
-                case 1:
+            for (RelatoriosServiceEnum action : RelatoriosServiceEnum.values()) {
+                System.out.println(action.getTexto());
+            }
+
+            Integer codigoAcao = scan.nextInt();
+            RelatoriosServiceEnum rse = RelatoriosServiceEnum.getActionByCodigo(codigoAcao);
+            switch (rse) {
+                case BUSCAR_FUNCIONARIO_NOME:
                     buscarFuncionarioNome(scan);
                     break;
-                case 2:
+                case BUSCAR_FUNCIONARIO_NOME_SALARIO_MARIO_DATA:
                     buscaFuncionarioNomeSalarioMaiorData(scan);
                     break;
-                case 3:
+                case BUSCAR_FUNCIONARIO_DATA_CONTRATACAO:
                     buscaFuncionarioDataContratacao(scan);
                     break;
-                case 4:
+                case PESQUISA_FUNCIONARIO_SALARIO:
                     pesquisaFuncionarioSalario();
                     break;
                 default:
@@ -69,7 +70,7 @@ public class RelatoriosService {
         System.out.println("Qual nome deseja pesquisar");
         String nome = scan.next();
 
-        System.out.println("Qual data contrtacao deseja pesquisa");
+        System.out.println("Qual data contratacao deseja pesquisa");
         String data = scan.next();
         LocalDate localDate = LocalDate.parse(data, formatter);
 

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@SuppressWarnings("DuplicatedCode")
 @Service
 public class CrudFuncionarioService {
 
@@ -31,6 +32,7 @@ public class CrudFuncionarioService {
 
     public void inicial(Scanner scan) {
 
+        system = true;
         while (system) {
             System.out.println("Qual acao de funcionario deseja executar?");
             System.out.println("0 - Sair");
@@ -85,18 +87,15 @@ public class CrudFuncionarioService {
     }
 
     private List<UnidadeTrabalho> unidade(Scanner scanner) {
-        Boolean isTrue = true;
+        boolean isTrue = true;
         List<UnidadeTrabalho> unidadeTrabalhoList = new ArrayList<>();
 
         while (isTrue) {
             System.out.println("Digite o unidadeId (Para sair digite 0)");
-            Long unidadeId = scanner.nextLong();
+            long unidadeId = scanner.nextLong();
 
             if (unidadeId != 0) {
-                UnidadeTrabalho unidadeTrabalho = unidadeTrabalhoRepository.findById(unidadeId).orElse(null);
-                if (unidadeTrabalho != null) {
-                    unidadeTrabalhoList.add(unidadeTrabalho);
-                }
+                unidadeTrabalhoRepository.findById(unidadeId).ifPresent(unidadeTrabalhoList::add);
             } else {
                 isTrue = false;
             }
@@ -133,7 +132,7 @@ public class CrudFuncionarioService {
 
     public void visualizar(Scanner scan) {
         System.out.println("Qual página voce deseja visualizar");
-        Integer page = scan.nextInt();
+        int page = scan.nextInt();
 
         PageRequest pageable = PageRequest
                 .of(page, 5, Sort.by(Sort.Direction.ASC, "nome"));

@@ -4,7 +4,6 @@ import com.emersonrte.spring.data.orm.UnidadeTrabalho;
 import com.emersonrte.spring.data.repository.UnidadeTrabalhoRepository;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.Scanner;
 
 @Service
@@ -19,6 +18,7 @@ public class CrudUnidadeTrabalhoService {
 
     public void inicial(Scanner scan) {
 
+        system = true;
         while (system) {
             System.out.println("Qual acao de unidadeTrabalho deseja executar?");
             System.out.println("0 - Sair");
@@ -91,7 +91,7 @@ public class CrudUnidadeTrabalhoService {
     public void visualizar() {
         Iterable<UnidadeTrabalho> unidadeTrabalhoList = unidadeTrabalhoRepository.findAll();
         System.out.println();
-        unidadeTrabalhoList.forEach(unidadeTrabalho -> System.out.println(unidadeTrabalho));
+        unidadeTrabalhoList.forEach(System.out::println);
         System.out.println();
     }
     

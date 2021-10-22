@@ -1,8 +1,5 @@
 package com.emersonrte.spring.data.orm;
 
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;

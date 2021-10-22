@@ -2,7 +2,6 @@ package com.emersonrte.spring.data.repository;
 
 import com.emersonrte.spring.data.orm.Funcionario;
 import com.emersonrte.spring.data.orm.FuncionarioProjecao;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;

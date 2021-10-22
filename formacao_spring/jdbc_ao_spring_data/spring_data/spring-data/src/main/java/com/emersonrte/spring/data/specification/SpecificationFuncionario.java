@@ -3,7 +3,6 @@ package com.emersonrte.spring.data.specification;
 import com.emersonrte.spring.data.orm.Funcionario;
 import org.springframework.data.jpa.domain.Specification;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class SpecificationFuncionario {
