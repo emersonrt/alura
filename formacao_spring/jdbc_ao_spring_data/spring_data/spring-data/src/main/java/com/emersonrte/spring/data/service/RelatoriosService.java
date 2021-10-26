@@ -3,8 +3,11 @@ package com.emersonrte.spring.data.service;
 import com.emersonrte.spring.data.orm.Funcionario;
 import com.emersonrte.spring.data.orm.FuncionarioProjecao;
 import com.emersonrte.spring.data.repository.FuncionarioRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -12,6 +15,7 @@ import java.util.List;
 import java.util.Scanner;
 
 @Service
+@RequiredArgsConstructor
 public class RelatoriosService {
 
     private Boolean system = true;
@@ -19,10 +23,7 @@ public class RelatoriosService {
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private final FuncionarioRepository funcionarioRepository;
 
-    public RelatoriosService(FuncionarioRepository funcionarioRepository) {
-        this.funcionarioRepository = funcionarioRepository;
-    }
-
+    @SneakyThrows
     public void inicial(Scanner scan) {
 
         system = true;
@@ -35,25 +36,14 @@ public class RelatoriosService {
 
             Integer codigoAcao = scan.nextInt();
             RelatoriosServiceEnum rse = RelatoriosServiceEnum.getActionByCodigo(codigoAcao);
-            switch (rse) {
-                case BUSCAR_FUNCIONARIO_NOME:
-                    buscarFuncionarioNome(scan);
-                    break;
-                case BUSCAR_FUNCIONARIO_NOME_SALARIO_MARIO_DATA:
-                    buscaFuncionarioNomeSalarioMaiorData(scan);
-                    break;
-                case BUSCAR_FUNCIONARIO_DATA_CONTRATACAO:
-                    buscaFuncionarioDataContratacao(scan);
-                    break;
-                case PESQUISA_FUNCIONARIO_SALARIO:
-                    pesquisaFuncionarioSalario();
-                    break;
-                default:
-                    system = false;
-                    break;
-            }
+            Method method = this.getClass().getDeclaredMethod(rse.getMethodName(), Scanner.class);
+            method.invoke(this, scan);
 
         }
+    }
+
+    private void sair(Scanner scan) {
+        system = false;
     }
 
     private void buscarFuncionarioNome(Scanner scan) {
@@ -93,11 +83,11 @@ public class RelatoriosService {
         list.forEach(System.out::println);
     }
 
-    public void pesquisaFuncionarioSalario( ) {
+    public void pesquisaFuncionarioSalario(Scanner scan) {
         List<FuncionarioProjecao> list = funcionarioRepository.findFuncionarioSalario();
         list.forEach(funcionarioProjecao ->
                 System.out.println("Funcionario id : " + funcionarioProjecao.getIdFuncionario() +
-                " | nome: " + funcionarioProjecao.getNome() + " | salario: " + funcionarioProjecao.getSalario())
+                        " | nome: " + funcionarioProjecao.getNome() + " | salario: " + funcionarioProjecao.getSalario())
         );
     }
 
