@@ -1,7 +1,5 @@
 package com.emersonrte.mvc.mudi.model;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
