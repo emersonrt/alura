@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Transferencia } from '../models/transferencia.model';
+import { TransferenciaService } from '../services/transferencia.service';
 
 @Component({
   selector: 'app-nova-transferencia',
@@ -7,18 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NovaTransferenciaComponent implements OnInit {
 
-  valor: number;
-  destino: number;
+  @Output() aoTransferir = new EventEmitter<any>();
+  @Output() valoresComErro = new EventEmitter<String>();
 
-  constructor() { }
+  valor: number;
+  destino: string;
+
+  constructor(private service: TransferenciaService) { }
 
   ngOnInit(): void {
   }
 
   transferir() {
-    console.log('Transferência realizada com sucesso!');
-    console.log('valor: ' + this.valor);
-    console.log('destino: ' + this.destino);
+    console.log('Solicitada nova transferência');
+    const valorEmitir: Transferencia = { valor: this.valor, destino: this.destino };
+    this.service.adicionar(valorEmitir).subscribe(resultado => {
+      console.log(resultado);
+      this.limparCampos();
+    },
+    error => {
+      console.error(error);
+    });
+  }
+
+  limparCampos() {
+    this.valor = 0;
+    this.destino = '0';
   }
 
 }

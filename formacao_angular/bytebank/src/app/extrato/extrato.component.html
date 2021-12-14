@@ -1,0 +1,27 @@
+<div class="container-lg table-responsive">
+    <table class="table table-hover table-bordered table-success text-center">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>Destino</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="transferencias.length > 0; else listaVazia">
+            <tr *ngFor="let transferencia of transferencias">
+                <td>{{transferencia?.data | date:"short" }}</td>
+                <td>{{transferencia?.valor | currency }}</td>
+                <td>{{transferencia?.destino}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #listaVazia>
+    <tr>
+        <td colspan="3">
+            <p>
+                Não há nenhuma transferência para exibir.
+            </p>
+        </td>
+    </tr>
+</ng-template>
