@@ -6,6 +6,7 @@ class ListaDeCategorias extends Component {
 	constructor() {
 		super();
 		this.state = { categorias: [] };
+		
 		this._novasCategorias = this._novasCategorias.bind(this);
 	}
 

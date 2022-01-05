@@ -7,6 +7,7 @@ class ListaDeNotas extends Component {
     constructor() {
         super();
         this.state = { notas: [] };
+        
         this._novasNotas = this._novasNotas.bind(this);
     }
 
