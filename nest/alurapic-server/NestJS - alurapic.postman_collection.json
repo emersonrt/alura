@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "eb115135-367d-4a95-955a-9c8c025ab4e7",
+		"name": "NestJS - alurapic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Criar usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"emersonrt7\",\n    \"email\": \"emersonrosateixeira@hotmail.com\",\n    \"password\" : \"123456\",\n    \"fullName\": \"Émerson Teixeira\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por nome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/emersonrt9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"emersonrt9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
