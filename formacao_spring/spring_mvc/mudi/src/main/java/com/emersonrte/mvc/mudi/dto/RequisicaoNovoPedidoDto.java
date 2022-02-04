@@ -1,6 +1,7 @@
 package com.emersonrte.mvc.mudi.dto;
 
 import com.emersonrte.mvc.mudi.model.Pedido;
+import com.emersonrte.mvc.mudi.model.StatusPedido;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -22,6 +23,7 @@ public class RequisicaoNovoPedidoDto {
         pedido.setUrlProduto(this.urlProduto);
         pedido.setUrlImagem(this.urlImagem);
         pedido.setDescricao(this.descricao);
+        pedido.setStatus(StatusPedido.AGUARDANDO);
         return pedido;
     }
 
