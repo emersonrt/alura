@@ -12,8 +12,8 @@ export class NovaTransferenciaComponent implements OnInit {
   @Output() aoTransferir = new EventEmitter<any>();
   @Output() valoresComErro = new EventEmitter<String>();
 
-  valor: number;
-  destino: string;
+  valor!: number;
+  destino!: string;
 
   constructor(private service: TransferenciaService, private router: Router) {}
 

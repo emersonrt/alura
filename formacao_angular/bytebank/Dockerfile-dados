@@ -1,0 +1,5 @@
+FROM clue/json-server:latest as json
+WORKDIR /data
+COPY ./dados .
+EXPOSE 80
+# docker run --rm -it -p 3000:80 bytebank-dados:latest

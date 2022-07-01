@@ -8,7 +8,7 @@ import { Transferencia } from '../models/transferencia.model';
   styleUrls: ['./extrato.component.scss'],
 })
 export class ExtratoComponent implements OnInit {
-  transferencias: any[];
+  transferencias!: any[];
 
   constructor(private service: TransferenciaService) {}
 
