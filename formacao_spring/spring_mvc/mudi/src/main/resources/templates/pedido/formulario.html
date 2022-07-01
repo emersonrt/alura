@@ -14,7 +14,7 @@
 
         <div class="card mt-3">
             <div class="card-body">
-                <form th:object="${requisicaoNovoPedidoDto}" class="card-body" action="/pedido/novo" method="POST">
+                <form th:object="${requisicaoNovoPedidoDto}" class="card-body" th:action="@{/pedido/novo}" method="POST">
                     <div class="form-group">
                         <label for="nomeProduto">Produto</label>
                         <input th:field="*{nomeProduto}" th:errorclass="is-invalid" class="form-control" placeholder="Nome do Produto">
@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <label for="descricao">Descricao</label>
-                        <textarea th:field="*{descricao}" class="form-control mb-3" rows="3" placeholder="Adicione detalhes importantes para ajudar o comprador"></textarea>
+                        <textarea th:field="*{descricao}" class="form-control mb-3" rows="3" maxlength="250" placeholder="Adicione detalhes importantes para ajudar o comprador"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                 </form>
